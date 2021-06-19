@@ -1,15 +1,25 @@
 import { render } from "react-dom";
 import SearchParams from "./components/SearchParams";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Details from "./components/Details";
 import "./style.css";
 
 const App = () => {
   return (
     <div>
-      <h1>Adopt Me!</h1>
-      {/* <Pet name="Luna" animal="dog" breed="Havanese" />
-      <Pet name="Pepper" animal="bird" breed="Cockatiel" />
-      <Pet name="Doink" animal="cat" breed="Mix" /> */}
-      <SearchParams />
+      <Router>
+        <header>
+          <Link to="/">
+            <h1>Adopt Me!</h1>
+          </Link>
+        </header>
+        <Switch>
+          <>
+            <Route exact path="/" component={SearchParams} />
+            <Route exact path="/details/:id" component={Details} />
+          </>
+        </Switch>
+      </Router>
     </div>
   );
 };
