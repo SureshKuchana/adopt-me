@@ -1,3 +1,10 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+} */
+
 * {
   box-sizing: border-box;
   color: #333;
@@ -87,8 +94,8 @@ body {
   text-overflow: ellipsis;
 }
 
-header>a,
-#root>div>h1 {
+header > a,
+#root > div > h1 {
   display: inline-block;
   background-image: url(http://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png);
   filter: brightness(150%);
@@ -150,7 +157,7 @@ header {
   margin-top: 8px;
 }
 
-.carousel>img {
+.carousel > img {
   max-width: 45%;
   max-height: 400px;
 }
@@ -159,7 +166,7 @@ header {
   width: 50%;
 }
 
-.carousel-smaller>img {
+.carousel-smaller > img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -169,7 +176,7 @@ header {
   border: 2px solid #333;
 }
 
-.carousel-smaller>img.active {
+.carousel-smaller > img.active {
   border-color: #333;
   opacity: 0.6;
 }
@@ -189,6 +196,7 @@ header {
 
 .search-params button,
 #modal button,
+#modal a,
 .details button {
   background-color: #ad343e;
   padding: 5px 25px;
@@ -199,6 +207,12 @@ header {
   display: block;
   margin: 0 auto;
   cursor: pointer;
+}
+
+#modal a {
+  display: inline-block;
+  margin-right: 15px;
+  text-decoration: none;
 }
 
 .search-params button:hover {
@@ -230,7 +244,7 @@ header {
   display: none;
 }
 
-#modal>div {
+#modal > div {
   background-color: white;
   max-width: 500px;
   padding: 15px;
@@ -321,9 +335,39 @@ header {
     margin: 0 auto;
     float: none;
   }
-
-  .carousel-smaller>img {
+  .carousel-smaller > img {
     width: 60px;
     height: 60px;
   }
+}
+
+.loading-pane {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 15px;
+}
+
+form .pet {
+  float: unset;
+  margin: 0 auto;
+}
+
+.loader {
+  font-size: 100px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mini.loading-pane {
+  height: 34px;
+}
+
+.mini .loader {
+  font-size: 34px;
 }
