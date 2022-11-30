@@ -1,13 +1,11 @@
+import SearchParams from "./components/SearchParams";
 import "./App.css";
-import Pet from "./components/Pet";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <h1>Adopt me</h1>
-      <Pet name="Luna" breed="dog" animal="Havanese" />
-      <Pet name="Pepper" breed="bird" animal="Cockatiel" />
-      <Pet name="Doink" breed="cat" animal="Mixed" />
+      <SearchParams />
     </div>
   );
 }
