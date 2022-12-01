@@ -1,14 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { PetType } from "../global/types";
+import useBreedList from "../hooks/useBreedList";
+import Results from "./Results";
+
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
+
 const SearchParams = () => {
-  const [location, setLocation] = useState("");
+  const [pets, setPets] = useState<PetType>([]);
+  const [location, setLocation] = useState("Seattle, WA");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
-  const BREEDS: any[] = ["h"];
+  const { breedList } = useBreedList(animal);
 
+  useEffect(() => {
+    requestPets();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function requestPets() {
+    const res = await fetch(
+      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+    );
+    const json = await res.json();
+
+    setPets(json.pets);
+  }
   return (
     <div className="search-params">
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          requestPets();
+        }}
+      >
         <label htmlFor="location">
           Location
           <input
@@ -39,19 +62,20 @@ const SearchParams = () => {
           Breed
           <select
             id="breed"
-            disabled={BREEDS.length === 0}
+            disabled={breedList.length === 0}
             value={breed}
             onChange={(e) => setBreed(e.target.value)}
             placeholder="breed"
           >
             <option />
-            {BREEDS.map((breed, index) => (
+            {breedList.map((breed, index) => (
               <option key={index}>{breed}</option>
             ))}
           </select>
         </label>
         <button type="submit">Submit</button>
       </form>
+      <Results pets={pets} />
     </div>
   );
 };
